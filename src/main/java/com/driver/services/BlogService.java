@@ -25,8 +25,8 @@ public class BlogService {
     public Blog createAndReturnBlog(Integer userId, String title, String content) {
         //create a blog at the current time
         // Create a blog and add it under given user
-        Optional<User>optionalUser=userRepository1.findById(userId);
-        User user=optionalUser.get();
+
+        User user=userRepository1.findById(userId).get();
 
 
         Blog blog=new Blog();

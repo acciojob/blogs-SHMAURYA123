@@ -19,19 +19,20 @@ public class UserService {
         User user=new User();
         user.setUsername(username);
         user.setPassword(password);
-
-        return userRepository3.save(user);
+        userRepository3.save(user);
+        return user;
     }
 
     public void deleteUser(int userId){
-        Optional<User> optionalUser=userRepository3.findById(userId);
-        User user=optionalUser.get();
-        userRepository3.delete(user);
+
+
+        userRepository3.deleteById(userId);
     }
 
     public User updateUser(Integer id, String password){
         User user=userRepository3.findById(id).get();
         user.setPassword(password);
-        return userRepository3.save(user);
+         userRepository3.save(user);
+         return user;
     }
 }

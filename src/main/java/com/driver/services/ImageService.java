@@ -18,8 +18,8 @@ public class ImageService {
 
     public Image addImage(Integer blogId, String description, String dimensions){
         //add an image to the blog
-        Optional<Blog>optionalBlog=blogRepository2.findById(blogId);
-      Blog blog=optionalBlog.get();
+
+      Blog blog=blogRepository2.findById(blogId).get();
         Image image=new Image();
 
            image.setDescription(description);
@@ -33,16 +33,15 @@ public class ImageService {
     }
 
     public void deleteImage(Integer id){
-          Optional<Image> optionalImage=imageRepository2.findById(id);
-        Image image=optionalImage.get();
 
-        imageRepository2.delete(image);
+
+        imageRepository2.deleteById(id);
     }
 
     public int countImagesInScreen(Integer id, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
-           Optional<Image> optionalImage=imageRepository2.findById(id);
-            Image image=optionalImage.get();
+
+            Image image=imageRepository2.findById(id).get();
             String[] givenDimension=screenDimensions.split("X");
             String dimension= image.getDimensions();
             String[] splitDim=dimension.split("X");
